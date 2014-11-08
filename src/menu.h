@@ -5,7 +5,7 @@
 #include <UTouch.h>
 #include "boardconfig.h"
 
-typedef void (*menufunc_t)(int);
+typedef void (*menufunc_t)(void *);
 
 typedef struct menu menu_t;
 
@@ -15,7 +15,7 @@ typedef struct menuitem {
 	item_type type;
 	char *text;
 	menufunc_t func;
-	int funcarg;
+	void *funcarg;
 	menu_t *newmenu;	
 } menuitem_t;
 

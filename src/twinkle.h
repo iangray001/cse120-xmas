@@ -7,10 +7,10 @@
 #include "boardconfig.h"
 
 void twinkle_start(UTFT lcd);
-void twinkle_speed(int dir);
-void twinkle_hue(int dir);
-void twinkle_brightness(int dir);
-void twinkle_twinkle(int dir);
+void twinkle_speed(void *dir);
+void twinkle_hue(void *dir);
+void twinkle_brightness(void *dir);
+void twinkle_twinkle(void *dir);
 void twinkle_tick();
 
 extern menu_t twinklemenu;

@@ -26,17 +26,17 @@ menu_t *currentmenu;
 //Main Menu setup
 /*****************************************************************/
 
-void testfunc(int arg) {
+void testfunc(void *arg) {
 	lcd.setColor(random(255),random(255),random(255));
 	lcd.fillRect(390, 230, 400, 240);
 }
 
-void leds_off(int arg) {
+void leds_off(void *arg) {
 	//TODO Turn off leds here
 	animation_tick_func = NULL;
 }
 
-void switch_twinkle(int arg) {
+void switch_twinkle(void *arg) {
 	twinkle_start(lcd);
 	animation_tick_func = twinkle_tick;
 	currentmenu = &twinklemenu;
