@@ -2,6 +2,7 @@
 #include <UTouch.h>
 #include <FastLED.h>
 #include "boardconfig.h"
+#include "library.h"
 #include "menu.h"
 #include "twinkle.h"
 
@@ -32,7 +33,7 @@ void testfunc(void *arg) {
 }
 
 void leds_off(void *arg) {
-	//TODO Turn off leds here
+	clearLEDs();
 	animation_tick_func = NULL;
 }
 
