@@ -56,9 +56,7 @@ void checkfortouch(UTFT lcd, UTouch touch) {
 					break;
 			}
 		}
-
 	}
-
 }
 
 

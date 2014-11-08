@@ -5,15 +5,16 @@
 #include <FastLED.h>
 #include "menu.h"
 #include "boardconfig.h"
+#include "library.h"
 
-void twinkle_start(UTFT lcd);
-void twinkle_speed(void *dir);
-void twinkle_hue(void *dir);
-void twinkle_brightness(void *dir);
-void twinkle_twinkle(void *dir);
-void twinkle_tick();
+class Twinkle : public Animation {
+public:
+	void start();
+	void tick(UTFT lcd);
+	menu_t *get_menu();
+};
 
-extern menu_t twinklemenu;
+extern Twinkle *twinkle;
 
 
 #endif
