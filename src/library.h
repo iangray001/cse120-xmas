@@ -27,18 +27,25 @@ decremented easily.
 */
 class Parameter {
 public:
-	Parameter(int minval, int maxval, int step, int start_val);
+	Parameter(char *name, int minval, int maxval, int step, int start_val);
 	void inc();
 	void dec();
 	int get();
+	void set(int v);
+	void reset();
+	char *name;
 private:
 	int val;
 	int step;
 	int minval;
 	int maxval;
+	int start_val;
 };
 
 void param_inc(void *dir);
 void param_dec(void *dir);
+void param_inc_lcd(void *dir);
+void param_dec_lcd(void *dir);
+void print_status_bar(char *string);
 
 #endif

@@ -3,10 +3,6 @@
 #define WORDS_X_MAX 5
 #define WORDS_Y_MAX 3
 
-//Fonts defined in the UTFT library
-extern uint8_t SmallFont[]; 
-extern uint8_t BigFont[];
-
 menuitem_t nullitem = {type_function, "", NULL, NULL, NULL, NULL};
 
 
