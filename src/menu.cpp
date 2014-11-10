@@ -3,19 +3,15 @@
 #define WORDS_X_MAX 5
 #define WORDS_Y_MAX 3
 
-extern uint8_t SmallFont[];
+//Fonts defined in the UTFT library
+extern uint8_t SmallFont[]; 
 extern uint8_t BigFont[];
-extern menu_t *currentmenu;
-extern int pin;
-
 
 menuitem_t nullitem = {type_function, "", NULL, NULL, NULL};
 
 
 void drawmenu(UTFT lcd, menu_t *menu) {
-
 	lcd.clrScr();
-
 	lcd.setFont(BigFont);
 	lcd.setColor(255, 255, 255);
 	lcd.print(menu->name, 0, 0);
@@ -33,22 +29,27 @@ void drawmenu(UTFT lcd, menu_t *menu) {
 
 }
 
-
-void checkfortouch(UTFT lcd, UTouch touch) {
+/*
+ * Check to see if the user has touched a menu item, and if they have, 
+ * perform the appropriate action.
+ *
+ * currentmenu is updated if a new menu was drawn.
+ */
+void checkfortouch(UTFT lcd, UTouch touch, menu_t **currentmenu) {
 	while (touch.dataAvailable() == true) {
-		digitalWrite(pin, LOW); // turn on pullup resistors
+		digitalWrite(TOUCH_PIN, LOW); // turn on pullup resistors
 		touch.read();
 		int x = touch.getX()/80;
 		int y = touch.getY()/80;
-		int item = y*WORDS_X_MAX + x;
+		int item = y * WORDS_X_MAX + x;
 
-		if(item < currentmenu->size) {
-			menuitem_t pressed = currentmenu->items[item];
+		if(item < (**currentmenu).size) {
+			menuitem_t pressed = (**currentmenu).items[item];
 
 			switch(pressed.type) {
 				case type_newmenu:
-					currentmenu = pressed.newmenu;
-					drawmenu(lcd, currentmenu);
+					*currentmenu = pressed.newmenu;
+					drawmenu(lcd, pressed.newmenu);
 					break;
 
 				case type_function:

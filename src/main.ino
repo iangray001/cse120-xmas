@@ -8,17 +8,14 @@
 
 
 CRGB leds[NUM_LEDS];
-
-int pin = 12;
 UTFT lcd(ITDB32WC, 38,39,40,41);
 UTouch touch(6,5,4,3,2);
 
 //The current LED animation
 Animation *currentanim;
 
-//The current menu on screen
+//The currently displayed menu
 menu_t *currentmenu;
-
 
 //Main Menu setup
 /*****************************************************************/
@@ -36,8 +33,10 @@ void leds_off(void *arg) {
 void switch_animation(void *arg) {
 	currentanim = (Animation *) arg;
 	currentanim->start();
-	currentmenu = currentanim->get_menu();
-	if(currentmenu != NULL) drawmenu(lcd, currentmenu);
+	if(currentanim->get_menu() != NULL) {
+		currentmenu = currentanim->get_menu();
+		drawmenu(lcd, currentmenu);
+	}
 }
 
 //Declare menu item arrays
@@ -54,20 +53,21 @@ menu_t mainmenu = {"Main Menu", 2, mainmenu_items};
 /*****************************************************************/
 
 void setup() {
-	pinMode(pin, OUTPUT);
+	pinMode(TOUCH_PIN, OUTPUT);
 	lcd.InitLCD();
 	touch.InitTouch();
 	touch.setPrecision(PREC_EXTREME);
 
 	FastLED.addLeds<WS2811, LED_DATA_PIN, RGB>(leds, NUM_LEDS);
 
+	currentanim = NULL;
 	currentmenu = &mainmenu;
-	drawmenu(lcd, currentmenu);
+	drawmenu(lcd, &mainmenu);
 }
 
 void loop() {
 	while (touch.dataAvailable() == true) {
-		checkfortouch(lcd, touch);
+		checkfortouch(lcd, touch, &currentmenu);
 	}
 
 	if(currentanim != NULL) currentanim->tick(lcd);
