@@ -20,6 +20,7 @@ enum item_type { type_newmenu, type_function };
 typedef struct menuitem {
 	item_type type;
 	char *text; //The text to be displayed
+	char *text2; //(Optional) second line of text for the item
 	menufunc_t func; //The function to be called for type_function items
 	void *funcarg; //The argument to the passed to the function
 	menu_t *newmenu; //The menu_t to jump to for type_newmenu items

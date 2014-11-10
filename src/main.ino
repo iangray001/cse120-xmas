@@ -41,8 +41,8 @@ void switch_animation(void *arg) {
 
 //Declare menu item arrays
 menuitem_t mainmenu_items[] = {
-	{type_function, "OFF", leds_off, 0, NULL},
-	{type_function, "Twinkle", switch_animation, (void *)twinkle, NULL}
+	{type_function, "LEDs", "OFF", leds_off, 0, NULL},
+	{type_function, "Twinkle", NULL, switch_animation, (void *)twinkle, NULL}
 };
 
 menu_t mainmenu = {"Main Menu", 2, mainmenu_items};

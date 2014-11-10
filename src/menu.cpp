@@ -7,7 +7,7 @@
 extern uint8_t SmallFont[]; 
 extern uint8_t BigFont[];
 
-menuitem_t nullitem = {type_function, "", NULL, NULL, NULL};
+menuitem_t nullitem = {type_function, "", NULL, NULL, NULL, NULL};
 
 
 void drawmenu(UTFT lcd, menu_t *menu) {
@@ -23,6 +23,8 @@ void drawmenu(UTFT lcd, menu_t *menu) {
 	int x = 0, y = 0;
 	for(int i = 0; i < menu->size; i++) {
 		lcd.print(menu->items[i].text, x*80+20, y*80+35);
+		if(menu->items[i].text2 != NULL) 
+			lcd.print(menu->items[i].text2, x*80+20, y*80+45);
 		x++;
 		if(x == WORDS_X_MAX) { x = 0; y++; }
 	}
