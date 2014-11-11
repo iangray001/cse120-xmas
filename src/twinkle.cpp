@@ -21,15 +21,15 @@ void reset(void *arg) {
 
 menuitem_t twinkle_items[] = {
 	{type_newmenu, " Back", "to main", NULL, NULL, &mainmenu},
-	{type_function, "Speed+", NULL, param_dec_lcd, (void *) &speed, NULL},
-	{type_function, "Hue+", NULL, param_inc_lcd, (void *) &hue, NULL},
-	{type_function, "Sat+", NULL, param_inc_lcd, (void *) &saturation, NULL},
-	{type_function, "Twink+", NULL, param_inc_lcd, (void *) &twinkleamount, NULL},
+	{type_function, "Speed", "  +", param_dec_lcd, (void *) &speed, NULL},
+	{type_function, "Hue", " +", param_inc_lcd, (void *) &hue, NULL},
+	{type_function, "Sat", " +", param_inc_lcd, (void *) &saturation, NULL},
+	{type_function, "Twink", "  +", param_inc_lcd, (void *) &twinkleamount, NULL},
 	{type_function, "Reset", NULL, reset, NULL, NULL},
-	{type_function, "Speed-", NULL, param_inc_lcd, (void *) &speed, NULL},
-	{type_function, "Hue-", NULL, param_dec_lcd, (void *) &hue, NULL},
-	{type_function, "Sat-", NULL, param_dec_lcd, (void *) &saturation, NULL},
-	{type_function, "Twink-", NULL, param_dec_lcd, (void *) &twinkleamount, NULL},
+	{type_function, "Speed", "  -", param_inc_lcd, (void *) &speed, NULL},
+	{type_function, "Hue", " -", param_dec_lcd, (void *) &hue, NULL},
+	{type_function, "Sat", " -", param_dec_lcd, (void *) &saturation, NULL},
+	{type_function, "Twink", "  -", param_dec_lcd, (void *) &twinkleamount, NULL},
 };
 
 menu_t twinklemenu = {"Twinkle", 10, twinkle_items};

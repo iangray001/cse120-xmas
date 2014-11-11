@@ -20,7 +20,7 @@ void drawmenu(UTFT lcd, menu_t *menu) {
 	for(int i = 0; i < menu->size; i++) {
 		lcd.print(menu->items[i].text, x*80+20, y*80+35);
 		if(menu->items[i].text2 != NULL) 
-			lcd.print(menu->items[i].text2, x*80+20, y*80+45);
+			lcd.print(menu->items[i].text2, x*80+20, y*80+47);
 		x++;
 		if(x == WORDS_X_MAX) { x = 0; y++; }
 	}
