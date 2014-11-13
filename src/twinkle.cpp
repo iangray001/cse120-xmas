@@ -3,12 +3,12 @@
 Twinkle *twinkle = new Twinkle();
 
 //										Min 	Max		Step	Start
-Parameter speed(		"Speed", 		0, 		100, 	10, 	50);	//Every speed frames change a target colour
-Parameter hue(			"Hue", 			0, 		255, 	5, 		160);	//The hue of the leds
+Parameter speed(		"Speed", 		0, 		100, 	10, 	10);	//Every speed frames change a target colour
+Parameter hue(			"Hue", 			0, 		255, 	10, 	0);		//The hue of the leds
 Parameter saturation(	"Saturation", 	0, 		255, 	30, 	0);		//The saturation of the leds
-Parameter twinkleamount("Twinkle", 		0, 		255, 	10, 	40);	//The amount to twiddle the value of the leds
+Parameter twinkleamount("Twinkle", 		0, 		255, 	10, 	60);	//The amount to twiddle the value of the leds
 
-#define FADEFRAMES 5
+#define FADEFRAMES 2
 
 
 void reset(void *arg) {
@@ -37,9 +37,6 @@ menu_t twinklemenu = {"Twinkle", 10, twinkle_items};
 CHSV target[NUM_LEDS];
 CHSV current[NUM_LEDS];
 
-int framenum;
-int fadeframenum;
-
 void Twinkle::start() {
 	for(int i = 0; i < NUM_LEDS; i++) {
 		leds[i] = CHSV(hue.get(), saturation.get(), 255);
@@ -47,24 +44,27 @@ void Twinkle::start() {
 		current[i] = CHSV(hue.get(), saturation.get(), 255);
 	}
 	FastLED.show();
-
-	framenum = 0;
-	fadeframenum = 0;
 }
 
 void Twinkle::tick(UTFT lcd) {
+	static int framenum;
+	static int fadeframenum;
+
 	framenum++;
+	fadeframenum++;
 
 	if(framenum > speed.get()) {
-		framenum == 0;
+		framenum = 0;
 		target[random(NUM_LEDS)] = CHSV(hue.get(), saturation.get(), 255 - random(twinkleamount.get()));
 	}
 
 	if(fadeframenum > FADEFRAMES) {
-		fadeframenum == 0;
+		fadeframenum = 0;
 		for(int i = 0; i < NUM_LEDS; i++) {
 			if(current[i].v < target[i].v) current[i].v++;
 			if(current[i].v > target[i].v) current[i].v--;
+			current[i].s = saturation.get();
+			current[i].h = hue.get();
 			leds[i] = current[i];
 		}
 		FastLED.show();

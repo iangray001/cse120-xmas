@@ -9,7 +9,7 @@
 #include <UTouch.h>
 
 #define NUM_LEDS 50
-#define LED_DATA_PIN 7
+#define LED_DATA_PIN 13
 #define TOUCH_PIN 12
 
 extern CRGB leds[NUM_LEDS];
