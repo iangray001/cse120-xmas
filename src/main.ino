@@ -5,6 +5,7 @@
 #include "library.h"
 #include "menu.h"
 #include "twinkle.h"
+#include "quizbuzztest.h"
 #include "quizbuzz.h"
 
 
@@ -44,7 +45,7 @@ void switch_animation(void *arg) {
 menuitem_t mainmenu_items[] = {
 	{type_function, "LEDs", "OFF", leds_off, 0, NULL},
 	{type_function, "Twinkle", NULL, switch_animation, (void *)twinkle, NULL},
-	{type_function, "Quiz", "Buzz", switch_animation, (void *)quizbuzz, NULL},
+	{type_function, "Quiz", "Buzz", switch_animation, (void *)quizbuzztest, NULL},
 };
 
 menu_t mainmenu = {"Main Menu", 3, mainmenu_items};

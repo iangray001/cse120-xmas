@@ -1,26 +1,5 @@
 #include "quizbuzz.h"
 
-QuizBuzz *quizbuzz = new QuizBuzz();
-
-void testbuzzeranim(void *arg) {
-	quizbuzz->play_buzz_anim((int)arg);
-}
-
-menuitem_t quizbuzz_items[] = {
-	{type_newmenu, " Back", "to main", NULL, NULL, &mainmenu},
-	{type_function, "1", NULL, testbuzzeranim, (void *) 0, NULL},
-	{type_function, "2", NULL, testbuzzeranim, (void *) 1, NULL},
-	{type_function, "3", NULL, testbuzzeranim, (void *) 2, NULL},
-	{type_function, "4", NULL, testbuzzeranim, (void *) 3, NULL},
-	nullitem,
-	{type_function, "5", NULL, testbuzzeranim, (void *) 4, NULL},
-	{type_function, "6", NULL, testbuzzeranim, (void *) 5, NULL},
-	{type_function, "7", NULL, testbuzzeranim, (void *) 6, NULL},
-	{type_function, "8", NULL, testbuzzeranim, (void *) 7, NULL},
-};
-
-menu_t quizbuzzmenu = {"Quiz Buzzer", 10, quizbuzz_items};
-
 typedef struct {
 	int st;
 	int end;
@@ -54,7 +33,7 @@ CRGB teamcol[NUM_TEAMS] = {
 #define SWOOP_FADE_SPEED 8
 #define POST_SWOOP_FADE_SPEED 5
 
-void QuizBuzz::play_buzz_anim(int team) {
+void play_buzz_anim(int team) {
 	if(team < 0 || team >= NUM_TEAMS) return;
 
 	clearLEDs();
@@ -99,16 +78,11 @@ void QuizBuzz::play_buzz_anim(int team) {
 	}
 }
 
-
-void QuizBuzz::start() {
+void set_team_colour(int team, CRGB col) {
+	if(team < 0 || team >= NUM_TEAMS) return;
+	for(int i = teams[team].st; i <= teams[team].end; i++) {
+		leds[i] = col;
+	}
 	FastLED.show();
 }
 
-
-void QuizBuzz::tick(UTFT lcd) {
-
-}
-
-menu_t *QuizBuzz::get_menu() {
-	return &quizbuzzmenu;
-}
