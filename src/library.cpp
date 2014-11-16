@@ -12,6 +12,27 @@ void clearLEDs() {
 }
 
 
+int fadeLeds(int speed, int start, int end) {
+	int still_on = 0;
+	for(int led = start; led <= end; led++) {
+		for(int i = 0; i < 3; i++) {
+			if(leds[led].raw[i] > speed) {
+				leds[led].raw[i] = leds[led].raw[i] - speed;
+				still_on = 1;
+			} else if(leds[led].raw[i] > 0) { //&& <= speed
+				leds[led].raw[i] = 0;
+				still_on = 1;
+			}
+		}
+	}
+	return still_on;
+}
+
+int fadeAllLeds(int speed) {
+	return fadeLeds(speed, 0, NUM_LEDS - 1);
+}
+
+
 Animation::Animation() {}
 Animation::~Animation() {}
 

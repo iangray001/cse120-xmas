@@ -7,6 +7,8 @@
 #include "boardconfig.h"
 #include "library.h"
 
+#define NUM_TEAMS 8
+
 class QuizBuzz : public Animation {
 public:
 	void start();
@@ -16,6 +18,6 @@ public:
 };
 
 extern QuizBuzz *quizbuzz;
-
+extern CRGB teamcol[NUM_TEAMS];
 
 #endif

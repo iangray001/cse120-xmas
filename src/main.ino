@@ -47,7 +47,7 @@ menuitem_t mainmenu_items[] = {
 	{type_function, "Quiz", "Buzz", switch_animation, (void *)quizbuzz, NULL},
 };
 
-menu_t mainmenu = {"Main Menu", 2, mainmenu_items};
+menu_t mainmenu = {"Main Menu", 3, mainmenu_items};
 
 
 

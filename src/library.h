@@ -5,8 +5,6 @@
 #include "boardconfig.h"
 #include "menu.h"
 
-void clearLEDs();
-
 /*
 Base animation class.
 */
@@ -18,8 +16,6 @@ public:
 	virtual menu_t *get_menu() = 0;
 	virtual ~Animation();
 };
-
-
 
 /*
 Simple utility class for storing a parameter that can be incremented and 
@@ -42,6 +38,12 @@ private:
 	int start_val;
 };
 
+//LED utility functions
+void clearLEDs();
+int fadeAllLeds(int speed);
+int fadeLeds(int speed, int start, int end);
+
+//Menu utility functions
 void param_inc(void *dir);
 void param_dec(void *dir);
 void param_inc_lcd(void *dir);
