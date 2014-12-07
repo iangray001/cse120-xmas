@@ -8,7 +8,7 @@
 #include <UTFT.h>
 #include <UTouch.h>
 
-#define NUM_LEDS 100
+#define NUM_LEDS 200
 #define LED_DATA_PIN 13
 #define TOUCH_PIN 12
 

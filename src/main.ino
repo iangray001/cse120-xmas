@@ -7,6 +7,7 @@
 #include "twinkle.h"
 #include "quizbuzztest.h"
 #include "quizbuzz.h"
+#include "megamas.h"
 
 
 CRGB leds[NUM_LEDS];
@@ -46,9 +47,10 @@ menuitem_t mainmenu_items[] = {
 	{type_function, "LEDs", "OFF", leds_off, 0, NULL},
 	{type_function, "Twinkle", NULL, switch_animation, (void *)twinkle, NULL},
 	{type_function, "Quiz", "Buzz", switch_animation, (void *)quizbuzztest, NULL},
+	{type_function, "Megamas", "", switch_animation, (void *)megamas, NULL},
 };
 
-menu_t mainmenu = {"Main Menu", 3, mainmenu_items};
+menu_t mainmenu = {"Main Menu", 4, mainmenu_items};
 
 
 
@@ -66,6 +68,8 @@ void setup() {
 	currentanim = NULL;
 	currentmenu = &mainmenu;
 	drawmenu(lcd, &mainmenu);
+
+	switch_animation((void *)megamas);
 }
 
 void loop() {
